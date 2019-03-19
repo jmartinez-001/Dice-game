@@ -48,38 +48,45 @@ function rollDice(n){
   return randomNumber;
 }
 
-// let scoreoutput;
+let scoreoutput;
+let totalTurn;
+let runningScore;
 
 function gameScoring() {
 
   let player1score = document.getElementById('player1score');
-  // let player2score = document.getElementById('player2score');
-
+  let player1total = document.getElementById('player1total');
+  let totalTurn = player1score.innerHTML;
   let sum = d4s + d6s + d8s + d10s + d12s + d20s;
   let scoreoutput = sum;
-  let score = [d4s, d6s, d8s, d10s, d12s, d20s];
-  let orderedarray = score.sort(function(a, b) {
-    return a - b
-  });
+  runningScore = turnScore();
+  let scorearray = [d4s, d6s, d8s, d10s, d12s, d20s];
+  let orderedarray = scorearray.sort(function(a, b) {
+    return a - b});
   let scorelength = orderedarray.length;
-  // let snakeeyescount = 0;
 
   for (i = 0; i < scorelength; i++) {
-    if ((orderedarray.indexOf(1, 0)) == 1) {
-      if ((orderedarray.indexOf(1, 1)) == 1) {
-        return scoreoutput += 0;
-      }
-    } else if ((orderedarray.lastIndexOf(20)) == 20) {
-      return scoreoutput = 0;
-    } else {
-      return scoreoutput;
+  if ((orderedarray.indexOf(1, 0)) == 1) {
+    if ((orderedarray.indexOf(1, 1)) == 1) {
+      scoreoutput = 0;
+      break;
     }
-
-    player1score.innerHTML = scoreoutput;
-    // player2score.innerHTML = scoreoutput;
-
+  } else if ((orderedarray.lastIndexOf(20)) == 20) {
+    scoreoutput += 0;
+    break;
+  } else {
+    scoreoutput;
   }
 
+  player1score.innerHTML = scoreoutput;
+  player1total.innerHTML = runningScore;
+  return;
+}
+}
 
 
+
+function turnScore() {
+  let score = player1score.innerHTML + scoreoutput;
+  return score;
 }
