@@ -48,7 +48,7 @@ function rollDice(n){
   return randomNumber;
 }
 
-let scoreoutput;
+// let scoreoutput;
 let totalTurn;
 let runningScore;
 
@@ -59,7 +59,7 @@ function gameScoring() {
   let totalTurn = player1score.innerHTML;
   let sum = d4s + d6s + d8s + d10s + d12s + d20s;
   let scoreoutput = sum;
-  runningScore = turnScore();
+  runningScore = turnScore(scoreoutput);
   let scorearray = [d4s, d6s, d8s, d10s, d12s, d20s];
   let orderedarray = scorearray.sort(function(a, b) {
     return a - b});
@@ -86,7 +86,7 @@ function gameScoring() {
 
 
 
-function turnScore() {
-  let score = player1score.innerHTML + scoreoutput;
+function turnScore(scoreoutput) {
+  let score = ((parseInt(player1score.innerHTML)) + scoreoutput);
   return score;
 }
