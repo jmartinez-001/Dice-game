@@ -23,6 +23,8 @@ let d10s;
 let d12s;
 let d20s;
 
+
+
 function roll(){
 
   d4s = rollDice(4);
@@ -39,7 +41,8 @@ function roll(){
   dice5.innerHTML = d12s;
   dice6.innerHTML = d20s;
 
-  gameScoring();
+  let totalScore = gameScoring();
+  let player1bank = document.getElementById('player1bank');
 
 }
 
@@ -48,43 +51,52 @@ function rollDice(n){
   return randomNumber;
 }
 
-// let scoreoutput;
+let totalScore;
 let totalTurn;
 let runningScore;
+let player1score = document.getElementById('player1score');
+let player1total = document.getElementById('player1total');
+
 
 function gameScoring() {
-
-  let player1score = document.getElementById('player1score');
-  let player1total = document.getElementById('player1total');
+  let totalScore = 0;
   let totalTurn = player1score.innerHTML;
   let sum = d4s + d6s + d8s + d10s + d12s + d20s;
   let scoreoutput = sum;
-  runningScore = turnScore(scoreoutput);
   let scorearray = [d4s, d6s, d8s, d10s, d12s, d20s];
   let orderedarray = scorearray.sort(function(a, b) {
     return a - b});
   let scorelength = orderedarray.length;
-
-  for (i = 0; i < scorelength; i++) {
-  if ((orderedarray.indexOf(1, 0)) == 1) {
-    if ((orderedarray.indexOf(1, 1)) == 1) {
+  // orderedarray[0] = 1;
+  // orderedarray[1] = 1;
+  if (orderedarray[0] == 1 && orderedarray[1] == 1) {
       scoreoutput = 0;
-      break;
-    }
-  } else if ((orderedarray.lastIndexOf(20)) == 20) {
-    scoreoutput += 0;
-    break;
-  } else {
-    scoreoutput;
+      runningScore = 0;
+      totalScore = 0;
+} if ((orderedarray[scorelength]) == 20) {
+    scoreoutput = 0;
+    runningScore = 0;
+  }
+  else {
+    runningScore = turnScore(scoreoutput);
   }
 
   player1score.innerHTML = scoreoutput;
   player1total.innerHTML = runningScore;
+  return totalScore;
+}
+
+
+
+function bankScore(){
+
+  totalScore = ((parseInt(player1bank.innerHTML)) +runningScore);
+  player1bank.innerHTML = totalScore;
+  player1score.innerHTML = 0;
+  player1total.innerHTML = 0;
+
   return;
 }
-}
-
-
 
 function turnScore(scoreoutput) {
   let score = ((parseInt(player1score.innerHTML)) + scoreoutput);
