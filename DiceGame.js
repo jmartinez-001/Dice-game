@@ -14,13 +14,6 @@
 // (5 points): As a developer, I want to make consistent commits accompanied with good, descriptive commit messages.
 
 
-// let d4 = document.getElementById('dice1');
-// let d6 = document.getElementById('dice2');
-// let d8 = document.getElementById('dice3');
-// let d10 = document.getElementById('dice4');
-// let d12 = document.getElementById('dice5');
-// let d20 = document.getElementById('dice6');
-
 let dice1 = document.getElementById('dice1');
 let dice2 = document.getElementById('dice2');
 let dice3 = document.getElementById('dice3');
@@ -71,8 +64,6 @@ function roll() {
   dice6.innerHTML = d20s;
 
   let totalScore = gameScoring();
-  // let player1bank = document.getElementById('player1bank');
-
 }
 
 function rollDice(n) {
@@ -103,7 +94,6 @@ function gameScoring() {
   } else {
     runningScore = turnScore(scoreoutput);
   }
-
   player1score.innerHTML = scoreoutput;
   player1total.innerHTML = runningScore;
   player1bank.innerHTML = totalScore;
@@ -111,16 +101,69 @@ function gameScoring() {
 }
 
 function bankScore() {
-  // if (scoreoutput != 0 && runningScore != 0) {
     totalScore = totalScore + runningScore;
     player1bank.innerHTML = totalScore;
     player1score.innerHTML = 0;
     player1total.innerHTML = 0;
-  // }
-  return;
+
+  // return updateHighScores();
 }
 
 function turnScore(scoreoutput) {
   let score = ((parseInt(player1total.innerHTML)) + scoreoutput);
   return score;
+}
+
+
+  let score1 = document.getElementById('score1');
+  let player1 = document.getElementById('name1');
+  let score2 = document.getElementById('score2');
+  let player2 = document.getElementById('name2');
+  let score3 = document.getElementById('score3');
+  let player3 = document.getElementById('name3');
+  let score4 = document.getElementById('score4');
+  let player4 = document.getElementById('name4');
+  let score5 = document.getElementById('score5');
+  let player5 = document.getElementById('name5');
+  let score6 = document.getElementById('score6');
+  let player6 = document.getElementById('name6');
+  let score7 = document.getElementById('score7');
+  let player7 = document.getElementById('name7');
+  let score8 = document.getElementById('score8');
+  let player8 = document.getElementById('name8');
+  let score9 = document.getElementById('score9');
+  let player9 = document.getElementById('name9');
+  let score10 = document.getElementById('score10');
+  let player10 = document.getElementById('name10');
+  let scoreboard;
+
+function updateHighScores() {
+
+  let highScore1 = { 'score': score1.innerHTML, 'player': player1 };
+  let highScore2 = { 'score': score2.innerHTML, 'player': player2 };
+  let highScore3 = { 'score': score3.innerHTML, 'player': player3 };
+  let highScore4 = { 'score': score4.innerHTML, 'player': player4 };
+  let highScore5 = { 'score': score5.innerHTML, 'player': player5 };
+  let highScore6 = { 'score': score6.innerHTML, 'player': player6 };
+  let highScore7 = { 'score': score7.innerHTML, 'player': player7 };
+  let highScore8 = { 'score': score8.innerHTML, 'player': player8 };
+  let highScore9 = { 'score': score9.innerHTML, 'player': player9 };
+  let highScore10 = { 'score': score10.innerHTML, 'player': player10 };
+  let highScoreInput = { 'score': player1total.innerHTML, 'player': prompt("Please Enter Initials ***") };
+  scoreboard = [highScore1, highScore2, highScore3, highScore4, highScore5, highScore6, highScore7, highScore8, highScore9, highScore10]
+  highScoreArray();
+
+function highScoreArray() {
+  for (let i = 0; i < scoreboard.length; i++) {
+    if (highScoreInput.score > parseInt(scoreboard[i].score)) {
+      for (let j = scoreboard.length; j > i && j != i; j--) {
+        scoreboard[j] = scoreboard[j - 1];
+      }
+      scoreboard[i] = highScoreInput;
+      break;
+    }
+  }
+  return scoreboard;
+}
+return;
 }
