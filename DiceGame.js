@@ -22,7 +22,7 @@ let dice5 = document.getElementById('dice5');
 let dice6 = document.getElementById('dice6');
 let player1score = document.getElementById('player1score');
 let player1total = document.getElementById('player1total');
-let player1bank = document.getElementById('player1bank');
+// let player1bank = document.getElementById('player1bank');
 
 function startGame() {
 
@@ -34,7 +34,7 @@ function startGame() {
   dice6.innerHTML = 0;
   player1score.innerHTML = 0;
   player1total.innerHTML = 0;
-  player1bank.innerHTML = 0;
+  // player1bank.innerHTML = 0;
 }
 
 let d4s;
@@ -43,7 +43,7 @@ let d8s;
 let d10s;
 let d12s;
 let d20s;
-let totalScore = 0;
+// let totalScore = 0;
 let totalTurn = 0;
 let runningScore= 0;
 
@@ -63,7 +63,7 @@ function roll() {
   dice5.innerHTML = d12s;
   dice6.innerHTML = d20s;
 
-  let totalScore = gameScoring();
+  gameScoring();
 }
 
 function rollDice(n) {
@@ -72,7 +72,7 @@ function rollDice(n) {
 }
 
 function gameScoring() {
-  totalScore;
+  // totalScore;
   let totalTurn = player1score.innerHTML;
   let sum = d4s + d6s + d8s + d10s + d12s + d20s;
   scoreoutput = sum;
@@ -86,7 +86,8 @@ function gameScoring() {
   if (orderedarray[0] == 1 && orderedarray[1] == 1) {
     scoreoutput = 0;
     runningScore = 0;
-    totalScore = 0;
+    updateHighScores();
+    // totalScore = 0;
   }
   if ((orderedarray[scorelength - 1]) == 20) {
     scoreoutput = 0;
@@ -96,18 +97,18 @@ function gameScoring() {
   }
   player1score.innerHTML = scoreoutput;
   player1total.innerHTML = runningScore;
-  player1bank.innerHTML = totalScore;
+  // player1bank.innerHTML = totalScore;
   return;
 }
 
-function bankScore() {
-    totalScore = totalScore + runningScore;
-    player1bank.innerHTML = totalScore;
-    player1score.innerHTML = 0;
-    player1total.innerHTML = 0;
-
-  // return updateHighScores();
-}
+// function bankScore() {
+//     totalScore = totalScore + runningScore;
+//     player1bank.innerHTML = totalScore;
+//     player1score.innerHTML = 0;
+//     player1total.innerHTML = 0;
+//
+//   return updateHighScores();
+// }
 
 function turnScore(scoreoutput) {
   let score = ((parseInt(player1total.innerHTML)) + scoreoutput);
@@ -135,35 +136,110 @@ function turnScore(scoreoutput) {
   let player9 = document.getElementById('name9');
   let score10 = document.getElementById('score10');
   let player10 = document.getElementById('name10');
-  let scoreboard;
 
 function updateHighScores() {
 
-  let highScore1 = { 'score': score1.innerHTML, 'player': player1 };
-  let highScore2 = { 'score': score2.innerHTML, 'player': player2 };
-  let highScore3 = { 'score': score3.innerHTML, 'player': player3 };
-  let highScore4 = { 'score': score4.innerHTML, 'player': player4 };
-  let highScore5 = { 'score': score5.innerHTML, 'player': player5 };
-  let highScore6 = { 'score': score6.innerHTML, 'player': player6 };
-  let highScore7 = { 'score': score7.innerHTML, 'player': player7 };
-  let highScore8 = { 'score': score8.innerHTML, 'player': player8 };
-  let highScore9 = { 'score': score9.innerHTML, 'player': player9 };
-  let highScore10 = { 'score': score10.innerHTML, 'player': player10 };
-  let highScoreInput = { 'score': player1total.innerHTML, 'player': prompt("Please Enter Initials ***") };
-  scoreboard = [highScore1, highScore2, highScore3, highScore4, highScore5, highScore6, highScore7, highScore8, highScore9, highScore10]
+  let highScore1 = {
+    'score': score1.innerHTML,
+    'player': player1.innerHTML
+  };
+  let highScore2 = {
+    'score': score2.innerHTML,
+    'player': player2.innerHTML
+  };
+  let highScore3 = {
+    'score': score3.innerHTML,
+    'player': player3.innerHTML
+  };
+  let highScore4 = {
+    'score': score4.innerHTML,
+    'player': player4.innerHTML
+  };
+  let highScore5 = {
+    'score': score5.innerHTML,
+    'player': player5.innerHTML
+  };
+  let highScore6 = {
+    'score': score6.innerHTML,
+    'player': player6.innerHTML
+  };
+  let highScore7 = {
+    'score': score7.innerHTML,
+    'player': player7.innerHTML
+  };
+  let highScore8 = {
+    'score': score8.innerHTML,
+    'player': player8.innerHTML
+  };
+  let highScore9 = {
+    'score': score9.innerHTML,
+    'player': player9.innerHTML
+  };
+  let highScore10 = {
+    'score': score10.innerHTML,
+    'player': player10.innerHTML
+  };
+  let highScoreInput = {
+    'score': player1total.innerHTML,
+    'player': prompt("Please Enter Initials ***")
+  };
+  let scoreboard = [highScore1, highScore2, highScore3, highScore4, highScore5, highScore6, highScore7, highScore8, highScore9, highScore10]
   highScoreArray();
 
-function highScoreArray() {
-  for (let i = 0; i < scoreboard.length; i++) {
-    if (highScoreInput.score > parseInt(scoreboard[i].score)) {
-      for (let j = scoreboard.length; j > i && j != i; j--) {
-        scoreboard[j] = scoreboard[j - 1];
+  function highScoreArray() {
+    scoreboard = [highScore1, highScore2, highScore3, highScore4, highScore5, highScore6, highScore7, highScore8, highScore9, highScore10]
+    for (let i = 0; i < scoreboard.length; i++) {
+      if (highScoreInput.score > parseInt(scoreboard[i].score)) {
+        for (let j = scoreboard.length; j > i && j != i; j--) {
+          scoreboard[j] = scoreboard[j - 1];
+        }
+        scoreboard[i] = highScoreInput;
+        break;
       }
-      scoreboard[i] = highScoreInput;
-      break;
     }
+
+    score1.innerHTML = scoreboard[0].score;
+    player1.innerHTML = scoreboard[0].player;
+    score2.innerHTML = scoreboard[1].score;
+    player2.innerHTML = scoreboard[1].player;
+    score3.innerHTML = scoreboard[2].score;
+    player3.innerHTML = scoreboard[2].player;
+    score4.innerHTML = scoreboard[3].score;
+    player4.innerHTML = scoreboard[3].player;
+    score5.innerHTML = scoreboard[4].score;
+    player5.innerHTML = scoreboard[4].player;
+    score6.innerHTML = scoreboard[5].score;
+    player6.innerHTML = scoreboard[5].player;
+    score7.innerHTML = scoreboard[6].score;
+    player7.innerHTML = scoreboard[6].player;
+    score8.innerHTML = scoreboard[7].score;
+    player8.innerHTML = scoreboard[7].player;
+    score9.innerHTML = scoreboard[8].score;
+    player9.innerHTML = scoreboard[8].player;
+    score10.innerHTML = scoreboard[9].score;
+    player10.innerHTML = scoreboard[9].player;
+
+
+    return;
   }
-  return scoreboard;
-}
-return;
+
+  // function postHighScore() {
+  //   for (let i = 0; i < scoreboard.length; i++) {
+  //     if (parseInt(scoreboard[i].score) != parseInt(scoreboard[i].score)) {
+  //
+  //     }
+  //   }
+  // }
+
+  dice1.innerHTML = 0;
+  dice2.innerHTML = 0;
+  dice3.innerHTML = 0;
+  dice4.innerHTML = 0;
+  dice5.innerHTML = 0;
+  dice6.innerHTML = 0;
+  player1score.innerHTML = 0;
+  player1total.innerHTML = 0;
+
+
+  return;
 }
