@@ -22,7 +22,6 @@ let dice5 = document.getElementById('dice5');
 let dice6 = document.getElementById('dice6');
 let player1score = document.getElementById('player1score');
 let player1total = document.getElementById('player1total');
-// let player1bank = document.getElementById('player1bank');
 
 function startGame() {
 
@@ -34,7 +33,7 @@ function startGame() {
   dice6.innerHTML = 0;
   player1score.innerHTML = 0;
   player1total.innerHTML = 0;
-  // player1bank.innerHTML = 0;
+
 }
 
 let d4s;
@@ -43,7 +42,6 @@ let d8s;
 let d10s;
 let d12s;
 let d20s;
-// let totalScore = 0;
 let totalTurn = 0;
 let runningScore= 0;
 
@@ -72,7 +70,6 @@ function rollDice(n) {
 }
 
 function gameScoring() {
-  // totalScore;
   let totalTurn = player1score.innerHTML;
   let sum = d4s + d6s + d8s + d10s + d12s + d20s;
   scoreoutput = sum;
@@ -81,13 +78,11 @@ function gameScoring() {
     return a - b
   });
   let scorelength = orderedarray.length;
-  // orderedarray[0] = 1;
-  // orderedarray[1] = 1;
+
   if (orderedarray[0] == 1 && orderedarray[1] == 1) {
     scoreoutput = 0;
     runningScore = 0;
     updateHighScores();
-    // totalScore = 0;
   }
   if ((orderedarray[scorelength - 1]) == 20) {
     scoreoutput = 0;
@@ -97,24 +92,13 @@ function gameScoring() {
   }
   player1score.innerHTML = scoreoutput;
   player1total.innerHTML = runningScore;
-  // player1bank.innerHTML = totalScore;
   return;
 }
-
-// function bankScore() {
-//     totalScore = totalScore + runningScore;
-//     player1bank.innerHTML = totalScore;
-//     player1score.innerHTML = 0;
-//     player1total.innerHTML = 0;
-//
-//   return updateHighScores();
-// }
 
 function turnScore(scoreoutput) {
   let score = ((parseInt(player1total.innerHTML)) + scoreoutput);
   return score;
 }
-
 
   let score1 = document.getElementById('score1');
   let player1 = document.getElementById('name1');
@@ -223,14 +207,6 @@ function updateHighScores() {
     return;
   }
 
-  // function postHighScore() {
-  //   for (let i = 0; i < scoreboard.length; i++) {
-  //     if (parseInt(scoreboard[i].score) != parseInt(scoreboard[i].score)) {
-  //
-  //     }
-  //   }
-  // }
-
   dice1.innerHTML = 0;
   dice2.innerHTML = 0;
   dice3.innerHTML = 0;
@@ -239,7 +215,6 @@ function updateHighScores() {
   dice6.innerHTML = 0;
   player1score.innerHTML = 0;
   player1total.innerHTML = 0;
-
 
   return;
 }
